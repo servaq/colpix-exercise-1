@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "colpix-exercise-1-executor",
+    "name": "colpix-exercise-1",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "42fv13jn09",
+    "module": "src/app"
+  }
+}
