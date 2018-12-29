@@ -1,5 +1,5 @@
 const ApiBuilder = require('claudia-api-builder');
-const config = require('./config.js');
+const Config = require('./config.js');
 const Database = require('./libs/database');
 
 const api = new ApiBuilder();
@@ -7,7 +7,7 @@ const api = new ApiBuilder();
 module.exports = api;
 
 let handleGetRequest = async (req) => {
-	const conf = config.getConfig(req.env.environment);
+	const conf = Config.getConfig(req.env.environment);
 	const database = new Database(conf.database);
 	const employees = await database.getEmployees();
 	const body = {
