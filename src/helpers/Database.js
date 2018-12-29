@@ -1,8 +1,8 @@
 const Knex = require('knex');
 
-module.exports = class Database {
+class Database {
 
-	constructor(config) {
+	init(config) {
 		this.dbConfig = config;
 		this.knexCache = null;
 	}
@@ -13,16 +13,13 @@ module.exports = class Database {
 		}
 	}
 
-	_getDb() {
+	getDb() {
 		if (this.knexCache == null) {
 			this.knexCache = new Knex(this.dbConfig);
 		}
 		return this.knexCache;
 	}
 
-	async getEmployees() {
-		let result = await this._getDb().table('employees')
-				.select();
-		return result;
-	}
 }
+
+module.exports = new Database();
