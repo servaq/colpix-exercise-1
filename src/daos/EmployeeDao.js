@@ -1,6 +1,6 @@
 const Database = require('../helpers/Database');
 
-class Employee {
+class EmployeeDao {
 
 	async getAll() {
 		let result = await Database.getDb().table('employees')
@@ -10,4 +10,4 @@ class Employee {
 
 }
 
-module.exports = new Employee();
+module.exports = new EmployeeDao();
