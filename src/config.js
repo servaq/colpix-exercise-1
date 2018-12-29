@@ -1,7 +1,7 @@
 const configs = {
 	dev: {
 		token: {
-			secret: '',
+			secret: 'G7jhnaXTM3QMPvZphZmFGwCe',
 			ttlSeconds: 300,
 		},
 		database: {
@@ -18,7 +18,7 @@ const configs = {
 	},
 	prod: {
 		token: {
-			secret: '',
+			secret: 'MYyYZ4F9P4hcCJ9BZDzHs4Ng',
 			ttlSeconds: 300,
 		},
 		database: {

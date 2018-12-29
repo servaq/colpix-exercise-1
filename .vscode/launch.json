@@ -11,8 +11,9 @@
 			"program": "${workspaceRoot}/node_modules/.bin/claudia-local-api",
 			"args": [
 				"--api-module",
-				"src/app.js"
-			]
+				"bin/app.js"
+			],
+			"preLaunchTask": "transpile",
 		}
 	]
 }
