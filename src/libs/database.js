@@ -1,28 +1,28 @@
 const Knex = require('knex');
 
-var dbConfig = null;
-var knexCache = null;
+module.exports = class Database {
 
-const getDb = () => {
-	if (knexCache == null) {
-		if (dbConfig == null) {
-			throw new Error('Database lib not initialized!');
-		}
-		knexCache = Knex(dbConfig);
+	constructor(config) {
+		this.dbConfig = config;
+		this.knexCache = null;
 	}
-	return knexCache;
-}
 
-module.exports.init = (config) => {
-	dbConfig = config;
-}
+	async disconnect() {
+		if (this.knexCache != null) {
+			return await this._getDb().destroy();
+		}
+	}
 
-module.exports.exit = async () => {
-	return await getDb().destroy();
-}
+	_getDb() {
+		if (this.knexCache == null) {
+			this.knexCache = new Knex(this.dbConfig);
+		}
+		return this.knexCache;
+	}
 
-module.exports.getEmployees = async () => {
-	let result = await getDb().table('employees')
-			.select();
-	return result;
+	async getEmployees() {
+		let result = await this._getDb().table('employees')
+				.select();
+		return result;
+	}
 }
