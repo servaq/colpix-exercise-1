@@ -1,6 +1,6 @@
 const ApiBuilder = require('claudia-api-builder');
-const Config = require('./config.js');
-const Database = require('./libs/database');
+const Config = require('./Config.js');
+const Database = require('./libs/Database');
 
 const api = new ApiBuilder();
 
