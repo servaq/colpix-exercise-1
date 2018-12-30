@@ -9,7 +9,7 @@ class EmployeeController {
 			items: list,
 			total_items: list.length,
 		}
-		return ApiBuilderHelper.createResponse(api, body, {}, 200);
+		return await ApiBuilderHelper.createResponse(api, body, {}, 200);
 	}
 
 }
