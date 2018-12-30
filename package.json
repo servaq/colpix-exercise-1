@@ -21,7 +21,7 @@
 		"sha1": "^1.1.1"
 	},
 	"devDependencies": {
-		"@buckit/claudia-local-api": "git+https://github.com/BuckitApp/claudia-local-api.git",
+		"@servaq/claudia-local-api": "git+https://github.com/servaq/claudia-local-api.git",
 		"babel-cli": "^6.26.0",
 		"babel-plugin-async-to-promises": "^1.0.5",
 		"babel-preset-es2015": "^6.24.1",

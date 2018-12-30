@@ -9,7 +9,7 @@ class Database {
 
 	async disconnect() {
 		if (this.knexCache != null) {
-			return await this._getDb().destroy();
+			return await this.getDb().destroy();
 		}
 	}
 
