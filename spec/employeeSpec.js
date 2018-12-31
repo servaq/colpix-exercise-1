@@ -66,7 +66,7 @@ describe('Employee', () => {
 	it('Get non-existent employee', (done) => {
 		app.proxyRouter({
 			requestContext: {
-				resourcePath: '/employees/:id',
+				resourcePath: '/employees/{id}',
 				httpMethod: 'GET'
 			},
 			pathParameters: {
@@ -138,7 +138,7 @@ describe('Employee', () => {
 	it('Get employees for supervisor 1', (done) => {
 		app.proxyRouter({
 			requestContext: {
-				resourcePath: '/employees/supervisor/:id',
+				resourcePath: '/employees/supervisor/{id}',
 				httpMethod: 'GET'
 			},
 			pathParameters: {
@@ -195,7 +195,7 @@ describe('Employee', () => {
 	it('Update employee 2 with supervisor', (done) => {
 		app.proxyRouter({
 			requestContext: {
-				resourcePath: '/employees/:id',
+				resourcePath: '/employees/{id}',
 				httpMethod: 'PUT'
 			},
 			pathParameters: {
@@ -225,7 +225,7 @@ describe('Employee', () => {
 	it('Get employees for supervisor 1 again', (done) => {
 		app.proxyRouter({
 			requestContext: {
-				resourcePath: '/employees/supervisor/:id',
+				resourcePath: '/employees/supervisor/{id}',
 				httpMethod: 'GET'
 			},
 			pathParameters: {
@@ -252,7 +252,7 @@ describe('Employee', () => {
 	it('Delete employee 1 fail because it is supervisor of employee 2', (done) => {
 		app.proxyRouter({
 			requestContext: {
-				resourcePath: '/employees/:id',
+				resourcePath: '/employees/{id}',
 				httpMethod: 'DELETE'
 			},
 			pathParameters: {
@@ -274,7 +274,7 @@ describe('Employee', () => {
 	it('Delete employee 2 OK', (done) => {
 		app.proxyRouter({
 			requestContext: {
-				resourcePath: '/employees/:id',
+				resourcePath: '/employees/{id}',
 				httpMethod: 'DELETE'
 			},
 			pathParameters: {
@@ -296,7 +296,7 @@ describe('Employee', () => {
 	it('Delete employee 1 OK', (done) => {
 		app.proxyRouter({
 			requestContext: {
-				resourcePath: '/employees/:id',
+				resourcePath: '/employees/{id}',
 				httpMethod: 'DELETE'
 			},
 			pathParameters: {

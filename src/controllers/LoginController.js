@@ -12,7 +12,6 @@ class LoginController {
 		try {
 			token = await Auth.login(username, password, conf.token);
 		} catch (error) {
-			console.log(error);
 			const body = {
 				success: false,
 				message: 'Authentication failed',

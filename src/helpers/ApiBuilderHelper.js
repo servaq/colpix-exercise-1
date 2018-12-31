@@ -14,7 +14,8 @@ class ApiBuilderHelper {
 		if (req.context && req.context.path && routesWithoutAuth.includes(req.context.path)) {
 			return req;
 		} else {
-			if (!req.headers.authorization) {
+			const authHeader = req.headers.authorization ? req.headers.authorization : req.headers.Authorization;
+			if (!authHeader) {
 				const body = {
 					success: false,
 					message: 'Missing authorization header',
@@ -22,7 +23,7 @@ class ApiBuilderHelper {
 				return this.createResponse(api, body, 401);
 			}
 			try {
-				Auth.validateToken(req.headers.authorization, conf.token);
+				Auth.validateToken(authHeader, conf.token);
 			} catch (error) {
 				const body = {
 					success: false,
