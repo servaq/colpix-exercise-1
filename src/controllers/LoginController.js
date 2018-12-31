@@ -17,14 +17,14 @@ class LoginController {
 				success: false,
 				message: 'Authentication failed',
 			}
-			throw await ApiBuilderHelper.createResponse(api, body, {}, 401);
+			throw await ApiBuilderHelper.createResponse(api, body, 401);
 		}
 		const body = {
 			success: true,
 			username: username,
 			token: token,
 		}
-		return await ApiBuilderHelper.createResponse(api, body, {}, 200);
+		return await ApiBuilderHelper.createResponse(api, body);
 	}
 
 }

@@ -3,9 +3,8 @@ const Database = require('../helpers/Database');
 class EmployeeDao {
 
 	async getAll() {
-		let result = await Database.getDb().table('employees')
+		return await Database.getDb().table('employees')
 				.select();
-		return result;
 	}
 
 	async get(id) {
@@ -23,10 +22,24 @@ class EmployeeDao {
 	}
 
 	async getForSupervisor(supervisorId) {
-		let result = await Database.getDb().table('employees')
+		return await Database.getDb().table('employees')
 				.where('supervisor_id', supervisorId)
 				.select();
-		return result;
+	}
+
+	async save(item) {
+		const table = Database.getDb().table('employees');
+		if (item.id) {
+			return await table.where('id', item.id).update(item);
+		} else {
+			return await table.insert(item);
+		}
+	}
+
+	async delete(id) {
+		return await Database.getDb().table('employees')
+				.where('id', id)
+				.del();
 	}
 
 }

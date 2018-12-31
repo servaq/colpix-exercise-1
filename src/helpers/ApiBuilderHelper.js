@@ -19,7 +19,7 @@ class ApiBuilderHelper {
 					success: false,
 					message: 'Missing authorization header',
 				}
-				return this.createResponse(api, body, {}, 401);
+				return this.createResponse(api, body, 401);
 			}
 			try {
 				Auth.validateToken(req.headers.authorization, conf.token);
@@ -28,15 +28,15 @@ class ApiBuilderHelper {
 					success: false,
 					message: error.message,
 				}
-				return this.createResponse(api, body, {}, 401);
+				return this.createResponse(api, body, 401);
 			}
 			return req;
 		}
 	}
 
-	async createResponse(api, body, headers, statusCode) {
+	async createResponse(api, body, statusCode, headers) {
 		await Database.disconnect();
-		return new api.ApiResponse(body, headers, statusCode);
+		return new api.ApiResponse(body || {}, headers || {}, statusCode || 200);
 	}
 
 }
