@@ -17,6 +17,12 @@ class EmployeeController {
 			id = req.pathParams.id;
 		}
 		const item = await EmployeeDao.get(id);
+		if (item == null) {
+			const body = {
+				message: 'Invalid item ID',
+			}
+			throw await ApiBuilderHelper.createResponse(api, body, 404);
+		}
 		item.employees_supervised = await EmployeeDao.getCountForSupervisor(id);
 		return await ApiBuilderHelper.createResponse(api, item);
 	}

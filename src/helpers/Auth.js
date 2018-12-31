@@ -4,6 +4,17 @@ const UserDao = require('../daos/UserDao');
 
 class Auth {
 
+	_createToken(userId, userName, tokenConfig) {
+		const tokenPayload = {
+			exp: Math.floor((Date.now() / 1000) + tokenConfig.ttlSeconds),
+			user: {
+				id: userId,
+				username: userName,
+			},
+		}
+		return jwt.sign(tokenPayload, tokenConfig.secret);
+	}
+
 	async login(username, password, tokenConfig) {
 		let user = await UserDao.getUser(username);
 		if (user == null) {
@@ -12,15 +23,7 @@ class Auth {
 		if (user.password != sha1(password)) {
 			throw new Error('Invalid password');
 		}
-		const tokenPayload = {
-			exp: Math.floor((Date.now() / 1000) + tokenConfig.ttlSeconds),
-			user: {
-				id: user.id,
-				username: user.username,
-			},
-		}
-		let token = jwt.sign(tokenPayload, tokenConfig.secret);
-		return token;
+		return this._createToken(user.id, user.username, tokenConfig);
 	}
 
 	validateToken(token, tokenConfig) {

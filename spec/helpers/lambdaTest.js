@@ -3,7 +3,7 @@ module.exports = (expectedStatusCode, bodyTestCallback, headersTestCallback) => 
 		asymmetricMatch: function(resultToTest) {
 			if (expectedStatusCode) {
 				if (resultToTest.statusCode != expectedStatusCode) {
-					throw new Error('Invalid StatusCode');
+					throw new Error('Invalid StatusCode, expected ' + expectedStatusCode + ', actual ' + resultToTest.statusCode);
 				}
 			}
 			if (bodyTestCallback) {

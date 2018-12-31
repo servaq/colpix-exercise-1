@@ -1,5 +1,6 @@
-const underTest = require('../src/app.js');
 const lambdaTest = require('./helpers/lambdaTest');
+const config = require('./config');
+const app = require('../src/app.js');
 
 describe('Login', () => {
 	let lambdaContextSpy;
@@ -9,7 +10,7 @@ describe('Login', () => {
 	});
 
 	it('Login fail because no user/pass', (done) => {
-		underTest.proxyRouter({
+		app.proxyRouter({
 			requestContext: {
 				resourcePath: '/login',
 				httpMethod: 'POST'
@@ -17,7 +18,7 @@ describe('Login', () => {
 			body: {
 			},
 			stageVariables: {
-				environment: 'dev'
+				environment: config.environment,
 			},
 		}, lambdaContextSpy).then(() => {
 			const bodyTestCallback = (body) => {
@@ -30,7 +31,7 @@ describe('Login', () => {
 	});
 
 	it('Login fail because invalid user/pass', (done) => {
-		underTest.proxyRouter({
+		app.proxyRouter({
 			requestContext: {
 				resourcePath: '/login',
 				httpMethod: 'POST'
@@ -40,7 +41,7 @@ describe('Login', () => {
 				password: '',
 			},
 			stageVariables: {
-				environment: 'dev'
+				environment: config.environment
 			},
 		}, lambdaContextSpy).then(() => {
 			const bodyTestCallback = (body) => {
@@ -53,17 +54,17 @@ describe('Login', () => {
 	});
 
 	it('Login fail because valid user but invalid pass', (done) => {
-		underTest.proxyRouter({
+		app.proxyRouter({
 			requestContext: {
 				resourcePath: '/login',
 				httpMethod: 'POST'
 			},
 			body: {
-				username: 'admin',
+				username: config.username,
 				password: '',
 			},
 			stageVariables: {
-				environment: 'dev'
+				environment: config.environment
 			},
 		}, lambdaContextSpy).then(() => {
 			const bodyTestCallback = (body) => {
@@ -76,17 +77,17 @@ describe('Login', () => {
 	});
 
 	it('Login OK', (done) => {
-		underTest.proxyRouter({
+		app.proxyRouter({
 			requestContext: {
 				resourcePath: '/login',
 				httpMethod: 'POST'
 			},
 			body: {
-				username: 'admin',
-				password: 'admin',
+				username: config.username,
+				password: config.password,
 			},
 			stageVariables: {
-				environment: 'dev'
+				environment: config.environment
 			},
 		}, lambdaContextSpy).then(() => {
 			const bodyTestCallback = (body) => {
