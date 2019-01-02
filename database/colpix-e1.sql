@@ -1,17 +1,6 @@
 /*
- Navicat Premium Data Transfer
-
- Source Server         : .root@local
- Source Server Type    : MySQL
- Source Server Version : 50638
- Source Host           : localhost:3306
- Source Schema         : colpix-e1
-
- Target Server Type    : MySQL
- Target Server Version : 50638
- File Encoding         : 65001
-
- Date: 31/12/2018 17:32:34
+ COLPIX exercise 1
+ Author: Sergio Vaquero
 */
 
 SET NAMES utf8mb4;
