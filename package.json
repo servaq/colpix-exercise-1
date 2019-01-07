@@ -4,12 +4,24 @@
 	"description": "COLPIX exercise 1",
 	"main": "src/app.js",
 	"scripts": {
-		"test": "./node_modules/.bin/jasmine; exit 0",
-		"transpile-dev": "./node_modules/.bin/babel --presets es2015 --plugins async-to-promises src --out-dir bin --source-maps inline",
-		"transpile": "./node_modules/.bin/babel --presets es2015 --plugins async-to-promises src --out-dir bin",
-		"create": "npm run transpile && ./node_modules/.bin/claudia create --region us-east-1 --api-module src/app --environment prod",
-		"update": "npm run transpile && ./node_modules/.bin/claudia update",
-		"server": "npm run transpile && ./node_modules/.bin/claudia-local-api --api-module bin/app.js"
+		"test": "run-script-os",
+		"test:win32": ".\\node_modules\\.bin/jasmine; exit 0",
+		"test:linux:darwin": "./node_modules/.bin/jasmine; exit 0",
+		"transpile-dev": "run-script-os",
+		"transpile-dev:win32": ".\\node_modules\\.bin\\babel --presets es2015 --plugins async-to-promises src --out-dir bin --source-maps inline",
+		"transpile-dev:linux:darwin": "./node_modules/.bin/babel --presets es2015 --plugins async-to-promises src --out-dir bin --source-maps inline",
+		"transpile": "run-script-os",
+		"transpile:win32": ".\\node_modules\\.bin\\babel --presets es2015 --plugins async-to-promises src --out-dir bin",
+		"transpile:linux:darwin": "./node_modules/.bin/babel --presets es2015 --plugins async-to-promises src --out-dir bin",
+		"create": "run-script-os",
+		"create:win32": "npm run transpile && .\\node_modules\\.bin\\claudia create --region us-east-1 --api-module src/app --environment prod",
+		"create:linux:darwmin": "npm run transpile && ./node_modules/.bin/claudia create --region us-east-1 --api-module src/app --environment prod",
+		"update": "run-script-os",
+		"update:win32": "npm run transpile && .\\node_modules\\.bin\\claudia update",
+		"update:linux:darwin": "npm run transpile && ./node_modules/.bin/claudia update",
+		"server": "run-script-os",
+		"server:win32": "npm run transpile && .\\node_modules\\.bin\\claudia-local-api --api-module bin/app.js",
+		"server:linux:darwin": "npm run transpile && ./node_modules/.bin/claudia-local-api --api-module bin/app.js"
 	},
 	"author": "Sergio Vaquero",
 	"license": "ISC",
@@ -26,6 +38,7 @@
 		"babel-plugin-async-to-promises": "^1.0.5",
 		"babel-preset-es2015": "^6.24.1",
 		"claudia": "^5.3.0",
-		"jasmine": "^3.3.1"
+		"jasmine": "^3.3.1",
+		"run-script-os": "^1.0.5"
 	}
 }
